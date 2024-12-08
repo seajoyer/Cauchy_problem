@@ -25,23 +25,13 @@
 
           buildInputs = with pkgs; [ gnuplot ];
 
-          cmakeFlags = [
-            "-DCMAKE_BUILD_TYPE=Release"
-            "-DCMAKE_CXX_FLAGS=-std=c++17"
-          ];
-
           buildPhase = ''
-            cmake .
-            make VERBOSE=1 -j $NIX_BUILD_CORES
+            g++ -std=c++17 -lm main.cpp -o ode_solver
           '';
 
           installPhase = ''
             mkdir -p $out/bin
-            cp cauchy_problem_example $out/bin/
-          '';
-
-          fixupPhase = ''
-            patchelf --set-rpath "${pkgs.lib.makeLibraryPath [ pkgs.gnuplot ]}:${pkgs.stdenv.cc.cc.lib}/lib" $out/bin/cauchy_problem_example
+            cp ode_solver $out/bin/
           '';
         };
 
