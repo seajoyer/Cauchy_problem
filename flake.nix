@@ -72,8 +72,7 @@
         apps = {
           cpp = flake-utils.lib.mkApp {
             drv = pkgs.writeShellScriptBin "run-cpp" ''
-              export PATH="${pkgs.gnuplot}/bin:$PATH"
-              ${cppProject}/bin/cauchy_problem_example
+              ${cppProject}/bin/ode_solver
             '';
           };
           py = flake-utils.lib.mkApp {
