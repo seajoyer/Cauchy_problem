@@ -15,13 +15,13 @@
           (ps: with ps; [ numpy matplotlib sympy tqdm ]);
 
         cppProject = pkgs.stdenv.mkDerivation {
-          pname = "cauchy_problem_example";
+          pname = "ode_solver";
           version = "0.1.0";
-          name = "cauchy_problem-0.1.0";
+          name = "ode_solver";
 
           src = ./cpp;
 
-          nativeBuildInputs = with pkgs; [ cmake gnumake ];
+          nativeBuildInputs = with pkgs; [ gnumake ];
 
           buildInputs = with pkgs; [ gnuplot ];
 
@@ -87,8 +87,6 @@
           name = "dev_shell";
 
           nativeBuildInputs = with pkgs; [
-            cmake
-            cmake-language-server
             bear
             gnumake
             clang
@@ -111,7 +109,6 @@
             alias c=clear
 
             echo "======================================"
-            echo "$(cmake   --version | head -n 1)"
             echo "$(g++     --version | head -n 1)"
             echo "$(make    --version | head -n 1)"
             echo "$(python  --version | head -n 1)"
